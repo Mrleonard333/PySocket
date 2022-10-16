@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket</title>
+</head>
+
+<body>
+    <h1>WebSocket connection test</h1>
+
+    Client message test - <button onclick="SEND()">SEND MESSAGE</button>
+</body>
+
+<script>
+    const socket = new WebSocket('ws://localhost:5000');
+
+    socket.addEventListener('open', function (event) {
+        console.log('[A_new_client_have_connected]')
+
+        window.alert('Welcome!')
+        window.alert('Check the console')
+    });
+
+    socket.addEventListener('close', function (event) {
+        console.log('[Client_disconected]')
+        
+        window.alert('Goodbye!')
+    });
+
+    socket.addEventListener('message', function (event) {
+        console.log('Message_from_server [', event.data, ']');
+    });
+
+    const SEND = () => {
+        var message = window.prompt("What's your message?")
+
+        socket.send(message);
+    }
+</script>
+
+</html>
