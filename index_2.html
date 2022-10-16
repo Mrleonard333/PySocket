@@ -10,33 +10,39 @@
 <body>
     <h1>WebSocket connection test</h1>
 
-    Client message test - <button onclick="PUBLIC_MESSAGE()">Public message</button>
+    Client_2 message test - <button onclick="PUBLIC_MESSAGE()">Public message</button>
+    <br>
+    Terminate connection - <button onclick="END_CONNECTION()">Terminate</button>
 </body>
 
 <script>
     const socket = new WebSocket('ws://localhost:5000');
 
-    socket.addEventListener('open', function (event) {
+    socket.addEventListener('open', function () {
         console.log('[A_new_client_have_connected]')
 
         window.alert('Welcome!')
         window.alert('Check the console')
     });
 
-    socket.addEventListener('close', function (event) {
+    socket.addEventListener('close', function () {
         console.log('[Client_disconected]')
         
-        window.alert('Goodbye!')
+        window.alert('You have been disconected')
     });
 
     socket.addEventListener('message', function (event) {
-        console.log('Message_from_server [', event.data, ']');
+        console.log(event.data);
     });
 
     const PUBLIC_MESSAGE = () => {
         var message = window.prompt("What's your message?")
-
         socket.send(message);
+    }
+
+    const END_CONNECTION = () => {
+        socket.send("<^798754613465461987513231871235952721487421^>");
+        window.alert('System terminated')
     }
 </script>
 
