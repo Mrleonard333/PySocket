@@ -16,8 +16,10 @@
 </body>
 
 <script>
+    // v Create a const of the WebSocket connection
     const socket = new WebSocket('ws://localhost:5000');
 
+    // v Wen the client connect
     socket.addEventListener('open', function () {
         console.log('[A_new_client_have_connected]')
 
@@ -25,21 +27,26 @@
         window.alert('Check the console')
     });
 
+    // v Wen the connection get closed
     socket.addEventListener('close', function () {
         console.log('[Client_disconected]')
         
         window.alert('You have been disconected')
     });
 
+    // v Seak for messages     // v Type        # v Store the envent data
     socket.addEventListener('message', function (event) {
-        console.log(event.data);
+        console.log(event.data);        // ^ Listener
     });
 
+    // v Send the message
     const PUBLIC_MESSAGE = () => {
         var message = window.prompt("What's your message?")
         socket.send(message);
+        // ^ Will send to the server
     }
 
+    // v Send the Terminate message
     const END_CONNECTION = () => {
         socket.send("<^798754613465461987513231871235952721487421^>");
         window.alert('System terminated')
