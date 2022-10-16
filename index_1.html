@@ -10,7 +10,7 @@
 <body>
     <h1>WebSocket connection test</h1>
 
-    Client message test - <button onclick="SEND()">SEND MESSAGE</button>
+    Client message test - <button onclick="PUBLIC_MESSAGE()">Public message</button>
 </body>
 
 <script>
@@ -33,7 +33,7 @@
         console.log('Message_from_server [', event.data, ']');
     });
 
-    const SEND = () => {
+    const PUBLIC_MESSAGE = () => {
         var message = window.prompt("What's your message?")
 
         socket.send(message);

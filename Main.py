@@ -2,9 +2,16 @@ import asyncio
 import websockets
 from os import system
 
+connected = set()
+
 async def server(websocket):
+    connected.add(websocket)
+
     async for message in websocket:
-        await websocket.send(message)
+            for C in connected:
+                if C != websocket:
+                    print(C)
+                    await C.send(f'Message for you: {message}')
 
 async def main():
     system('cls')
