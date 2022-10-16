@@ -32,7 +32,6 @@
           window.alert('System terminated')
      }
   |--------------------------------------------------------------------------------|
-      v [If the message is equal to the Terminate message]
       if message == "<^798754613465461987513231871235952721487421^>":
          connected.remove(websocket) < [Remove the connection]
          
